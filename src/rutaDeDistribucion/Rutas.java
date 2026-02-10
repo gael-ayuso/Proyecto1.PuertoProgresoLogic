@@ -157,7 +157,7 @@ public class Rutas extends ListaRutas implements SubMenu {
     }
 
     public Parada getSiguienteParada(){
-        return (Parada) inicio.getSiguiente().getDato();
+        return (Parada) inicio.getDato();
     }
 
     public static void main(String[] args) {
