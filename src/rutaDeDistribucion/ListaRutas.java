@@ -4,6 +4,10 @@ import estructurasDeDatos.listas.ListaDoble;
 
 public abstract class ListaRutas extends ListaDoble {
 
+    public int getContador() {
+        return contador;
+    }
+
     protected int contador;
 
     public ListaRutas() {

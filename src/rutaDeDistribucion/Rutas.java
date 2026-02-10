@@ -15,7 +15,7 @@ public class Rutas extends ListaRutas implements SubMenu {
 
 
     @Override
-    public void menuRecepcion() {
+    public void menuRecepcion(Scanner sc) {
         int opcion;
         Scanner scanner = new Scanner(System.in);
         do {
@@ -63,7 +63,8 @@ public class Rutas extends ListaRutas implements SubMenu {
 
     @Override
     public void agregarParadaAlFinal(String nombreParada) {
-        insertaFinal(nombreParada);
+        Parada parada = new Parada(nombreParada);
+        insertaFinal(parada);
         contador++;
         System.out.println("Parada agregada correctamente");
     }
@@ -81,7 +82,7 @@ public class Rutas extends ListaRutas implements SubMenu {
 
                 if (anterior.equals(datoActual) && siguiente.equals(datoSiguiente)) {
                     NodoDoble next = actual.getSiguiente();
-                    NodoDoble nuevo = new NodoDoble(nombreParada, next, actual);
+                    NodoDoble nuevo = new NodoDoble(new Parada(nombreParada), next, actual);
 
                     actual.setSiguiente(nuevo);
                     next.setAnterior(nuevo);
@@ -145,12 +146,14 @@ public class Rutas extends ListaRutas implements SubMenu {
     public void imprimir() {
         Nodo actual = inicio;
         while(actual != null){
-            System.out.print(actual.getDato() + "->");
+            System.out.print(actual.getDato());
             actual = actual.getSiguiente();
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
-        new Rutas().menuRecepcion();
+        Scanner scanner = new Scanner(System.in);
+        new Rutas().menuRecepcion(scanner);
     }
 }

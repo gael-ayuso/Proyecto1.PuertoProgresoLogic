@@ -4,8 +4,9 @@
  */
 package Recepcion;
 
-import Colas.ListaSQueue;
-import Modelo.Camion;
+
+import estructurasDeDatos.colas.ListaSQueue;
+
 import java.util.Scanner;
 
 /**
@@ -48,6 +49,7 @@ public class ModuloARecepcion {
                     break;
                 case 5:
                     System.out.println("Regresando al menu principal...");
+
                     break;
                 default:
                     System.out.println("Opcion invalida");
