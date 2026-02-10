@@ -23,8 +23,11 @@ public abstract class Lista {
     }
 
     public abstract void insertaInicio(Object dato);
+
     public abstract void insertaFinal(Object dato);
+
     public abstract Object eliminaInicio();
+
     public abstract Object eliminaFinal();
 
     public boolean vacio() {
@@ -55,7 +58,4 @@ public abstract class Lista {
         this.nombre = nombre;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

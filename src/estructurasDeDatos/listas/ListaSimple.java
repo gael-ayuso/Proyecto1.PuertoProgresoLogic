@@ -91,23 +91,4 @@ public class ListaSimple extends Lista {
             }
         }
     }
-
-    public static void main(String[] args) {
-        ListaSimple lista = new ListaSimple();
-//        lista.insertaInicio(7);
-//        lista.insertaInicio("HOLA");
-//        System.out.println(lista.eliminaInicio());
-//
-//        lista.insertaInicio(":)");
-//        lista.insertaInicio('a');
-//        lista.insertaFinal('b');
-        lista.insertaEnOrden(1);
-        lista.insertaEnOrden(223);
-        lista.insertaEnOrden(45);
-        lista.insertaEnOrden(65);
-        lista.insertaEnOrden(75);
-        lista.insertaEnOrden(2);
-
-        lista.imprimir();
-    }
 }

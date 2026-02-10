@@ -58,19 +58,4 @@ public class ListaDoble extends ListaD{
         }
         return eliminado;
     }
-
-    public static void main(String[] args) {
-        ListaDoble lista = new ListaDoble();
-        lista.insertaInicio("1");
-        lista.insertaInicio("2");
-        lista.insertaInicio("3");
-        lista.insertaInicio(">:(");
-        lista.insertaInicio(2.3);
-        lista.insertaInicio(false);
-        lista.imprimir();
-        lista.eliminaFinal();
-        System.out.println("Imprimir al reves");
-        lista.imprimir();
-//        lista.imprimirAlReves();
-    }
 }
