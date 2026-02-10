@@ -4,6 +4,9 @@
  */
 package listas;
 
+import estructurasDeDatos.listas.Lista;
+import estructurasDeDatos.listas.Nodo;
+
 /**
  *
  * @author compu
