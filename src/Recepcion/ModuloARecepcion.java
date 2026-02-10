@@ -108,6 +108,10 @@ public class ModuloARecepcion {
             colaCamiones.enqueue(aux.dequeue());
         }
     }
+
+    public int getCamionesEnEspera() {
+        return colaCamiones.size();
+    }
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

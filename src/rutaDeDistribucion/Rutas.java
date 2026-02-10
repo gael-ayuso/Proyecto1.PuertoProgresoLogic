@@ -152,8 +152,18 @@ public class Rutas extends ListaRutas implements SubMenu {
         System.out.println();
     }
 
+    public int getParadasProgramadas(){
+        return contador;
+    }
+
+    public Parada getSiguienteParada(){
+        return (Parada) inicio.getSiguiente().getDato();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         new Rutas().menuRecepcion(scanner);
     }
+
+
 }
