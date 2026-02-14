@@ -63,6 +63,10 @@ public class Contenedor {
         }
     }
 
+    public void setProductos(ListaSimple productos) {
+        this.productos = productos;
+    }
+
     @Override
     public String toString() {
         return "Contenedor{id='" + id + "'}";

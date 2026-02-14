@@ -78,15 +78,12 @@ public class ModuloARecepcion {
         System.out.println(camion);
     }
     
-    private void verProximoCamion() {
+    public Camion verProximoCamion() {
         if(colaCamiones.isEmpty()) {
             System.out.println("No hay camiones en la cola");
-            return;
+            return null;
         }
-        
-        Camion camion = (Camion) colaCamiones.front();
-        System.out.println("El proximo camion es: ");
-        System.out.println(camion);
+        return (Camion) colaCamiones.front();
     }
     
     private void listarCamiones() {
@@ -111,6 +108,10 @@ public class ModuloARecepcion {
 
     public int getCamionesEnEspera() {
         return colaCamiones.size();
+    }
+
+    public boolean isEmpty() {
+        return colaCamiones.isEmpty();
     }
     
     public static void main(String[] args) {

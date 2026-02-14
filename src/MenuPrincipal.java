@@ -7,7 +7,11 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
 
-    public static void menuPrincipal() {
+    private ModuloARecepcion moduloARecepcion;
+    private PatioDContenedores patioDContenedores;
+    private Rutas rutas;
+
+    public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do{
@@ -24,13 +28,40 @@ public class MenuPrincipal {
             opcion = scanner.nextInt();
             scanner.nextLine();
             switch (opcion){
-                case 1 -> new ModuloARecepcion().menuRecepcion(scanner);
-                case 2 -> new PatioDContenedores().menuRecepcion(scanner);
-                case 3 -> new Rutas().menuRecepcion(scanner);
-                case 4 -> System.out.println("Reporte generado");
+                case 1 -> {
+                    if(moduloARecepcion == null) {
+                        moduloARecepcion = new ModuloARecepcion();
+                    }
+                    moduloARecepcion.menuRecepcion(scanner);
+                }
+                case 2 -> {
+                    if(patioDContenedores == null) {
+                        patioDContenedores = new PatioDContenedores();
+                    }
+                    patioDContenedores.menuRecepcion(scanner);
+                }
+                case 3 -> {
+                    if(rutas == null) {
+                        rutas = new Rutas();
+                    }
+                    rutas.menuRecepcion(scanner);
+                }
+                case 4 -> new ReporteGeneral(this).menuRecepcion(scanner);
                 case 5 -> System.out.println("Saliendo del sistema...");
                 default -> System.out.println("Opcion invalida");
             }
         }while (opcion != 5);
+    }
+
+    public ModuloARecepcion getModuloARecepcion() {
+        return moduloARecepcion;
+    }
+
+    public Rutas getRutas() {
+        return rutas;
+    }
+
+    public PatioDContenedores getPatioDContenedores() {
+        return patioDContenedores;
     }
 }
