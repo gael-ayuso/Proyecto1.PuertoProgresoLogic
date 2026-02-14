@@ -178,12 +178,13 @@ public class PatioDContenedores implements SubMenu {
             opcionInspeccion = scanner.nextInt();
 
             switch (opcionInspeccion) {
-                case 1 -> {
+
+                case 1 -> agregarProducto(scanner, contenedor);
+                case 2 -> {
                     System.out.println("Productos actuales:");
                     contenedor.listarProductos();
                     System.out.println("Peso total = " + contenedor.calcularPesoTotal());
                 }
-                case 2 -> agregarProducto(scanner, contenedor);
                 case 0 -> System.out.println("Volviendo al menu del patio...");
                 default -> System.out.println("Opcion invalida.");
             }
