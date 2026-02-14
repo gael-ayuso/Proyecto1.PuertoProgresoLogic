@@ -1,5 +1,6 @@
 import Recepcion.Camion;
 import estructurasDeDatos.SubMenu;
+import rutaDeDistribucion.Rutas;
 
 import java.util.Scanner;
 
@@ -34,9 +35,9 @@ public class ReporteGeneral implements SubMenu {
 
         System.out.println("\n[ESTADO DE LOGÍSTICA]:");
         if(menuPrincipal.getRutas() != null) {
-            System.out.println(">> Rutas activas: 1 \n" +
-                    ">> Próximo destino"+ menuPrincipal.getRutas().getSiguienteParada() +"\n" +
-                    ">> Total de paradas programadas: "+ menuPrincipal.getRutas().getParadasProgramadas() +"\n");
+            int activas = menuPrincipal.getRutas().getRutasActivas();
+            System.out.println(">> Rutas activas:"+ activas +"\n");
+            if(activas > 0) menuPrincipal.getRutas().imprimirRutasActivas();
         }else{
             System.out.println("\n>> Módulo no inicializado");
         }
@@ -45,4 +46,5 @@ public class ReporteGeneral implements SubMenu {
         System.out.println("Presione cualquier tecla para volver al menú principal...");
         sc.nextLine();
     }
+
 }

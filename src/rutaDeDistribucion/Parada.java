@@ -13,7 +13,7 @@ public class Parada {
 
     @Override
     public String toString() {
-        return nombreParada + "->";
+        return nombreParada;
     }
 
 }

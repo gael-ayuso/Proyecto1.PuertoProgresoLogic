@@ -1,6 +1,7 @@
 import PatioDeContenedores.Vista.PatioDContenedores;
 import Recepcion.ModuloARecepcion;
 import estructurasDeDatos.SubMenu;
+import rutaDeDistribucion.ListaRutas;
 import rutaDeDistribucion.Rutas;
 
 import java.util.Scanner;
@@ -9,7 +10,8 @@ public class MenuPrincipal {
 
     private ModuloARecepcion moduloARecepcion;
     private PatioDContenedores patioDContenedores;
-    private Rutas rutas;
+    private ListaRutas rutas;
+
 
     public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +44,7 @@ public class MenuPrincipal {
                 }
                 case 3 -> {
                     if(rutas == null) {
-                        rutas = new Rutas();
+                        rutas = new ListaRutas();
                     }
                     rutas.menuRecepcion(scanner);
                 }
@@ -57,9 +59,10 @@ public class MenuPrincipal {
         return moduloARecepcion;
     }
 
-    public Rutas getRutas() {
+    public ListaRutas getRutas() {
         return rutas;
     }
+
 
     public PatioDContenedores getPatioDContenedores() {
         return patioDContenedores;
