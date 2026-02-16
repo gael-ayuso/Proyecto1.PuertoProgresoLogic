@@ -13,6 +13,9 @@ public class MenuPrincipal {
     private ListaRutas rutas;
 
 
+    //Muestra el menu principal del sistema y redirige a los submenus correspondientes
+    //Los cuales son Recepcion, Patio de contenedores, Logistica y Reporte general
+
     public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -55,15 +58,17 @@ public class MenuPrincipal {
         }while (opcion != 5);
     }
 
+    //Devuelve el modulo de recepcion para poder acceder a sus metodos
     public ModuloARecepcion getModuloARecepcion() {
         return moduloARecepcion;
     }
 
+    //Devuelve la lista de rutas para poder acceder a sus metodos
     public ListaRutas getRutas() {
         return rutas;
     }
 
-
+    //Devuelve el patio de contenedores para poder acceder a sus metodos
     public PatioDContenedores getPatioDContenedores() {
         return patioDContenedores;
     }

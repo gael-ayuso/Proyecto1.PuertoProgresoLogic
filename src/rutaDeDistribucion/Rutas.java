@@ -11,9 +11,14 @@ public class Rutas implements SubMenu {
     private ListaParadas listaParadas = new ListaParadas();
     private int numeroDeRuta;
 
+
     public Rutas(int numeroDeRuta) {
         this.numeroDeRuta = numeroDeRuta;
     }
+
+    //Despliega el menu de recepcion de la ruta
+    //Permite agregar paradas al final, insertar paradas entre destinos y eliminar paradas
+    //Adicional simular el recorrido de la ruta
     @Override
     public void menuRecepcion(Scanner sc) {
         int opcion;
@@ -61,10 +66,12 @@ public class Rutas implements SubMenu {
         }while (opcion != 5);
     }
 
+    //Devuelve el numero de paradas programadas en la ruta
     public int getParadasProgramadas(){
         return listaParadas.getContador();
     }
 
+    //Devuelve la primera parada de la ruta
     public Parada getPrimeraParada(){
         if(listaParadas.vacio()) return null;
 
@@ -79,7 +86,7 @@ public class Rutas implements SubMenu {
 //        new Rutas().menuRecepcion(scanner);
 //    }
 
-
+    //Devuelve el numero de ruta
     public int getNumeroDeRuta() {
         return numeroDeRuta;
     }

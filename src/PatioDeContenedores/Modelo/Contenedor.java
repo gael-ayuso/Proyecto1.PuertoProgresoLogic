@@ -23,10 +23,12 @@ public class Contenedor {
         this.productos = new ListaSimple();
     }
 
+    //Devuelve el id del contenedor
     public String getId() {
         return id;
     }
 
+    // Devuelve la lista de productos del contenedor
     public ListaSimple getProductos() {
         return productos;
     }
@@ -50,6 +52,7 @@ public class Contenedor {
         return total;
     }
 
+    //imprime los productos del contenedor
     public void listarProductos() {
         Nodo actual = productos.getInicio();
         if (actual == null) {
@@ -63,10 +66,12 @@ public class Contenedor {
         }
     }
 
+    //Reemplaza la lista de productos por otra nueva
     public void setProductos(ListaSimple productos) {
         this.productos = productos;
     }
 
+    //ToString
     @Override
     public String toString() {
         return "Contenedor{id='" + id + "'}";

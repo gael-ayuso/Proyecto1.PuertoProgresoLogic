@@ -11,6 +11,9 @@ public class ListaRutas implements SubMenu {
     ListaSimple listaRutas = new ListaSimple();
     int contadorRutas = 0;
 
+
+    //Submenu de logistica/rutas
+    //permite crear, modificar y eliminar rutas
     @Override
     public void menuRecepcion(Scanner sc) {
         int opcion;
@@ -35,6 +38,8 @@ public class ListaRutas implements SubMenu {
 
     }
 
+    //Crea una nueva ruta y la agrega a la lista de rutas
+
     private void crearNuevaRuta(Scanner sc) {
         Rutas nueva = new Rutas(contadorRutas);
         listaRutas.insertaFinal(nueva);
@@ -44,6 +49,7 @@ public class ListaRutas implements SubMenu {
         nueva.menuRecepcion(sc);
     }
 
+    //Imprime todas las rutas programadas
     private void imprimirRutasProgramadas() {
         if (listaRutas.vacio()) {
             System.out.println("(No hay rutas programadas)");
@@ -62,6 +68,7 @@ public class ListaRutas implements SubMenu {
         }
     }
 
+    //Permite modificar una ruta ya programada y editar sus paradas
     private void modificarRuta(Scanner sc) {
         if (listaRutas.vacio()) {
             System.out.println("No hay rutas para modificar.");
@@ -82,6 +89,7 @@ public class ListaRutas implements SubMenu {
         ruta.menuRecepcion(sc);
     }
 
+    //Permite eliminar una ruta ya programada por su numero de ruta
     private void eliminarRuta(Scanner sc) {
         if (listaRutas.vacio()) {
             System.out.println("No hay rutas para eliminar.");
@@ -101,6 +109,8 @@ public class ListaRutas implements SubMenu {
         }
     }
 
+    //Busca una ruta por su numero de ruta
+
     private Rutas buscarRuta(int numeroRuta) {
         Nodo actual = listaRutas.getInicio();
         while (actual != null) {
@@ -110,6 +120,8 @@ public class ListaRutas implements SubMenu {
         }
         return null;
     }
+
+    //Elimina una ruta por su numero de ruta reajustando los enlaces de los nodos
 
     private boolean eliminarRutaPorNumero(int numeroRuta) {
         if (listaRutas.vacio()) return false;
@@ -145,15 +157,19 @@ public class ListaRutas implements SubMenu {
     }
 
 
+    //Devuelve el numero de rutas activas
+
     public int getRutasActivas() {
         return contadorRutas;
     }
 
+    //Devuelve la primera ruta de la lista
     public Rutas getPrimeraRuta() {
         if (listaRutas.vacio()) return null;
         return (Rutas) listaRutas.getInicio().getDato();
     }
 
+    //Imprime todas las rutas activas, esto sirve para el Reporte general
     public void imprimirRutasActivas() {
         if(listaRutas.vacio()) {
             System.out.println("(No hay rutas activas)");

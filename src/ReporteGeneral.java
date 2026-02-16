@@ -11,6 +11,11 @@ public class ReporteGeneral implements SubMenu {
         this.menuPrincipal = menuPrincipal;
     }
 
+    //Muestra los datos del reporte general
+    //De los modulos de
+    //Recepcion
+    //Inventario
+    //Logistica
     @Override
     public void menuRecepcion(Scanner sc) {
         System.out.println("[ESTADO DE RECEPCIÓN]:\n");

@@ -20,26 +20,32 @@ public class Producto {
         this.peso = peso;
     }
 
+    //Devuelve el id del producto
     public String getId() { 
     return id; 
     }
-    
+
+    //Devuelve el nombre del producto
     public String getNombre() {
     return nombre; 
     }
-    
+
+    //Devuelve el peso del producto
     public double getPeso() {
     return peso; 
     }
 
+    //Modifica el nombre del producto
     public void setNombre(String nombre) { 
     this.nombre = nombre; 
     }
-    
+
+    //Modifica el peso del producto
     public void setPeso(double peso) { 
     this.peso = peso;
     }
 
+    //ToString
     @Override
     public String toString() {
         return "Producto{id='" + id + "', nombre='" + nombre + "', peso=" + peso + "}";

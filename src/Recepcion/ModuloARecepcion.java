@@ -19,6 +19,11 @@ public class ModuloARecepcion {
     public ModuloARecepcion() {
         colaCamiones = new ListaSQueue();
     }
+
+
+    //Despliega el menu de recepcion del modulo de recepcion
+    //Permite agregar camiones al final de la cola y dar ingreso a patio
+    //Adicional permite ver el proximo camion a atender y listar todos los camiones en espera
     
     public void menuRecepcion(Scanner sc) {
         int opcion;
@@ -56,7 +61,9 @@ public class ModuloARecepcion {
             }
         } while (opcion != 5);
     }
-    
+
+
+    //Agrega un camion a la cola de espera solicitando su placa
     private void registrarCamion(Scanner sc) {
         System.out.println("Ingresa la placa del camion: ");
         String placa = sc.nextLine();
@@ -66,7 +73,8 @@ public class ModuloARecepcion {
         
         System.out.println("Camion agregado a la cola exitosamente");
     }
-    
+
+    //Da ingreso al patio al proximo camion de la cola
     private void ingresarPatio() {
         if(colaCamiones.isEmpty()) {
             System.out.println("No hay camiones en la cola");
@@ -77,7 +85,8 @@ public class ModuloARecepcion {
         System.out.println("El proximo camion a ingresar es: ");
         System.out.println(camion);
     }
-    
+
+    //Consulta proximo camion a atender
     public Camion verProximoCamion() {
         if(colaCamiones.isEmpty()) {
             System.out.println("No hay camiones en la cola");
@@ -85,7 +94,8 @@ public class ModuloARecepcion {
         }
         return (Camion) colaCamiones.front();
     }
-    
+
+    //Muestra todos los camiones en espera
     private void listarCamiones() {
         if(colaCamiones.isEmpty()) {
             System.out.println("No hay camiones en la cola");
@@ -106,14 +116,17 @@ public class ModuloARecepcion {
         }
     }
 
+    //Devuelve el numero de camiones en espera
     public int getCamionesEnEspera() {
         return colaCamiones.size();
     }
 
+    //Devuelve true si la cola esta vacia
     public boolean isEmpty() {
         return colaCamiones.isEmpty();
     }
-    
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ModuloARecepcion modulo = new ModuloARecepcion();

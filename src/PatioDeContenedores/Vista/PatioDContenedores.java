@@ -31,6 +31,9 @@ public class PatioDContenedores implements SubMenu {
         this.patio = crearPatio();
     }
 
+    //Muesta el menu de recepcion del modulo de patio de contenedores
+    //Permite ingresar y retirar contenedor para ruta
+    //Ver tope de las pilas y inspeccionar contenedor
     @Override
     public void menuRecepcion(Scanner scanner) {
         int opcionYard;
@@ -57,6 +60,7 @@ public class PatioDContenedores implements SubMenu {
         } while (opcionYard != 5);
     }
 
+    //Construye un arreglo de pilas para el patio de contenedores
     private Pila[] crearPatio() {
         Pila[] p = new Pila[NUM_PILAS];
         for (int i = 0; i < NUM_PILAS; i++) {
@@ -65,6 +69,8 @@ public class PatioDContenedores implements SubMenu {
         return p;
     }
 
+
+    //Solicita una pila a la que se quiere ingresar un contenedor y lo ingresa
     private void ingresarContenedor(Scanner scanner) {
         Integer idx = pedirIndicePila(scanner);
         if (idx == null) return;
@@ -87,6 +93,7 @@ public class PatioDContenedores implements SubMenu {
         System.out.println("OK: Contenedor '" + idCont + "' apilado en la pila " + (idx + 1) + ".");
     }
 
+    //Retira el contenedor de la pila seleccionada para enviar a ruta
     private void retirarContenedor(Scanner scanner) {
         Integer idx = pedirIndicePila(scanner);
         if (idx == null) return;
@@ -97,6 +104,7 @@ public class PatioDContenedores implements SubMenu {
         }
     }
 
+    //Muestra el tope de cada pila del patio
     private void verTopes() {
         System.out.println("\nTopes del patio:");
         for (int i = 0; i < NUM_PILAS; i++) {
@@ -108,6 +116,8 @@ public class PatioDContenedores implements SubMenu {
             }
         }
     }
+
+    //Permite seleccionar una pila y contenedor por id para inspeccionar su contenido
 
     private void inspeccionarContenedor(Scanner scanner) {
         Integer idx = pedirIndicePila(scanner);
@@ -127,6 +137,8 @@ public class PatioDContenedores implements SubMenu {
         menuInspeccion(scanner, encontrado);
     }
 
+
+    //Solicita al usuario el numero de la pila
     private Integer pedirIndicePila(Scanner scanner) {
         System.out.println("Elige pila (1-" + NUM_PILAS + "): ");
         int p = scanner.nextInt();
@@ -137,6 +149,7 @@ public class PatioDContenedores implements SubMenu {
         return p - 1;
     }
 
+    //Busca un contenedor en una pila por su id
     private Contenedor buscarContenedorEnPila(int idx, String objetivoId) {
         Pila aux = new ListaSPila();
         Contenedor encontrado = null;
@@ -160,13 +173,15 @@ public class PatioDContenedores implements SubMenu {
         return encontrado;
     }
 
+    //Restaura una pila a su estado anterior
     private void restaurarPila(int idx, Pila aux) {
         while (!aux.isEmpty()) {
             patio[idx].push(aux.pop());
         }
     }
 
-
+    //Menu de inspeccion de contenedor
+    //Permite agregar productos y calcular peso total
     private void menuInspeccion(Scanner scanner, Contenedor contenedor) {
         int opcionInspeccion;
         do {
@@ -191,6 +206,8 @@ public class PatioDContenedores implements SubMenu {
         } while (opcionInspeccion != 0);
     }
 
+    //Solicita datos de producto al usuario para agregarlo al contenedor
+
     private void agregarProducto(Scanner scanner, Contenedor contenedor) {
         System.out.print("ID producto: ");
         String pid = scanner.nextLine().trim();
@@ -211,12 +228,14 @@ public class PatioDContenedores implements SubMenu {
         System.out.println("Producto agregado.");
     }
 
+    //Imprime el estado actual de cada pila del patio
     public void imprimirEstadoPatio() {
         for (int i = 0; i < NUM_PILAS; i++) {
             System.out.println(formatearLineaPila(i));
         }
     }
 
+    //Da formato de impresion de la pila para el reporte general
     private String formatearLineaPila(int idx) {
         int ocupados = patio[idx].size();
         int pesoTotalKg = calcularPesoTotalPilaKg(idx);
@@ -233,6 +252,7 @@ public class PatioDContenedores implements SubMenu {
         return base + " - Peso Total: " + nf.format(pesoTotalKg) + " kg";
     }
 
+    //Construye una cadena de barras para representar la altura de la pila
     private String construirBarras(int ocupados, int capacidad) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < ocupados; i++) sb.append("|");
@@ -240,6 +260,7 @@ public class PatioDContenedores implements SubMenu {
         return sb.toString();
     }
 
+    //Calcula el peso total de todos los productos contenidos en una pila
     private int calcularPesoTotalPilaKg(int idx) {
         // Recorremos la pila sin perder el orden (pop -> aux -> restaurar)
         Pila aux = new ListaSPila();

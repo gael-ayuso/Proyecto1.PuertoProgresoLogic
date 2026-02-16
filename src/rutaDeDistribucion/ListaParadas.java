@@ -7,11 +7,6 @@ import estructurasDeDatos.listas.NodoDoble;
 import java.util.Scanner;
 
 public class ListaParadas extends ListaDoble {
-
-    public int getContador() {
-        return contador;
-    }
-
     protected int contador;
 
     public ListaParadas() {
@@ -19,16 +14,23 @@ public class ListaParadas extends ListaDoble {
         contador = 0;
     }
 
-    public void agregarParadaAlFinal(String nombreParada){
+
+    //Agrega parada al final de la lista
+    public void agregarParadaAlFinal(String nombreParada) {
         Parada parada = new Parada(nombreParada);
         insertaFinal(parada);
         contador++;
         System.out.println("Parada agregada correctamente");
     }
-    public void agregarParadaEntreDestinos(String nombreParada, String anterior, String siguiente){
-        if(vacio()){
+
+    //Inserta una parada entre dos destinos consecutivos
+    //Busca un nodo cuyo anterior y siguiente coincidan cons los parametros de anterior y siguiente
+    //En dado caso que no se cumpla, no se inserta la nueva parada
+
+    public void agregarParadaEntreDestinos(String nombreParada, String anterior, String siguiente) {
+        if (vacio()) {
             System.out.println("La lista de rutas esta vacia");
-        }else {
+        } else {
             boolean insertado = false;
             NodoDoble actual = inicio;
             while (actual != null && actual.getSiguiente() != null) {
@@ -56,7 +58,10 @@ public class ListaParadas extends ListaDoble {
         }
     }
 
-    public void eliminarParada(String nombreParada){
+
+    //Elimina una parada de la lista por su nombre
+    //Busca el nodo cuyo dato sea igual al nombre de la parada a eliminar y lo elimina
+    public void eliminarParada(String nombreParada) {
         if (vacio()) {
             System.out.println("La lista de rutas esta vacia");
         } else {
@@ -102,43 +107,51 @@ public class ListaParadas extends ListaDoble {
         }
     }
 
-    public  void simularRecorrido(Scanner scanner){
-//        imprimir();
-//        System.out.println("Cantidad de paradas: " + contador);
+    //Simula el recorrido de la lista de rutas
+    //Permite moverse por la lista con anterior y siguiente
+
+    public void simularRecorrido(Scanner scanner) {
         int opcion;
-        if(!vacio()){
+        if (!vacio()) {
             NodoDoble aux = inicio;
-            do{
+            do {
                 System.out.println("\nParadas programadas: " + contador);
-                System.out.println("Siguiente parada: " +  inicio.getDato());
+                System.out.println("Siguiente parada: " + inicio.getDato());
                 System.out.println("Anterior (1) o siguiente (2), regresar menu anterior (0):");
                 opcion = scanner.nextInt();
                 scanner.nextLine();
 
-                if(opcion == 1){
-                    if(aux.getAnterior() != null){
+                if (opcion == 1) {
+                    if (aux.getAnterior() != null) {
                         aux = aux.getAnterior();
-                    }else {
+                    } else {
                         System.out.println("\nEstas en el inicio de la lista");
                     }
-                }else if(opcion == 2){
-                    if(aux.getSiguiente() != null){
+                } else if (opcion == 2) {
+                    if (aux.getSiguiente() != null) {
                         aux = aux.getSiguiente();
-                    }else {
+                    } else {
                         System.out.println("\nEstas en el final de la lista");
                     }
-                }if(opcion == 0){
+                }
+                if (opcion == 0) {
                     System.out.println("Regresando...\n");
                 }
 
 
-            }while(opcion != 0);
-        }else {
+            } while (opcion != 0);
+        } else {
             System.out.println("La lista de rutas esta vacia\n");
         }
 
     }
 
+    //Devuelve la cantidad de paradas en la lista
+    public int getContador() {
+        return contador;
+    }
+
+    //Imprime la lista de rutas
     @Override
     public void imprimir() {
         Nodo actual = inicio;
