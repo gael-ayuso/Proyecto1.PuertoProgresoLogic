@@ -43,9 +43,15 @@ public class PatioDContenedores implements SubMenu {
             System.out.println("[1] Ingresar contenedor desde Recepción (Push a una Pila)\n" +
                     "[2] Retirar contenedor para Ruta (Pop de una Pila)\n" +
                     "[3] Ver tope de las pilas (Peek)\n" +
-                    "[4] INSPECCIONAR CONTENEDOR (Gestión de contenido interno)\n"+
+                    "[4] INSPECCIONAR CONTENEDOR (Gestión de contenido interno)\n" +
                     "[5] Volver al Menu Principal");
             System.out.println("Seleccione una opcion: ");
+
+            while (!scanner.hasNextInt()) {
+                scanner.nextLine();
+                System.out.println("Entrada invalida. Debe ingresar un numero.");
+                System.out.print("Seleccione una opcion: ");
+            }
             opcionYard = scanner.nextInt();
             scanner.nextLine();
 
@@ -83,7 +89,7 @@ public class PatioDContenedores implements SubMenu {
         System.out.print("ID del contenedor: ");
         String idCont = scanner.nextLine().trim();
         if (idCont.isEmpty()) {
-            System.out.println("ID invalido.");
+            System.out.println("ID invalido. No puede estar vacio.");
             return;
         }
 
@@ -97,6 +103,11 @@ public class PatioDContenedores implements SubMenu {
     private void retirarContenedor(Scanner scanner) {
         Integer idx = pedirIndicePila(scanner);
         if (idx == null) return;
+
+        if (patio[idx].isEmpty()) {
+            System.out.println("No se puede retirar: la pila esta vacia.");
+            return;
+        }
 
         Contenedor c = (Contenedor) patio[idx].pop();
         if (c != null) {
@@ -131,6 +142,11 @@ public class PatioDContenedores implements SubMenu {
         System.out.print("ID del contenedor a revisar: ");
         String objetivoId = scanner.nextLine().trim();
 
+        if (objetivoId.isEmpty()) {
+            System.out.println("ID invalido. No puede estar vacio.");
+            return;
+        }
+
         Contenedor encontrado = buscarContenedorEnPila(idx, objetivoId);
         if (encontrado == null) return;
 
@@ -141,9 +157,18 @@ public class PatioDContenedores implements SubMenu {
     //Solicita al usuario el numero de la pila
     private Integer pedirIndicePila(Scanner scanner) {
         System.out.println("Elige pila (1-" + NUM_PILAS + "): ");
+
+        while (!scanner.hasNextInt()) {
+            scanner.nextLine();
+            System.out.println("Entrada invalida. Debe ingresar un numero.");
+            System.out.print("Elige pila (1-" + NUM_PILAS + "): ");
+        }
+
         int p = scanner.nextInt();
+        scanner.nextLine();
+
         if (p < 1 || p > NUM_PILAS) {
-            System.out.println("Pila invalida.");
+            System.out.println("Pila invalida. Debe estar entre 1 y " + NUM_PILAS + ".");
             return null;
         }
         return p - 1;
@@ -190,7 +215,14 @@ public class PatioDContenedores implements SubMenu {
             System.out.println(">> [2] Calcular peso total (Recorrer Lista)");
             System.out.println(">> [0] Volver");
             System.out.print("Opcion: ");
+
+            while (!scanner.hasNextInt()) {
+                scanner.nextLine();
+                System.out.println("Entrada invalida. Debe ingresar un numero.");
+                System.out.print("Opcion: ");
+            }
             opcionInspeccion = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcionInspeccion) {
 
@@ -212,17 +244,32 @@ public class PatioDContenedores implements SubMenu {
         System.out.print("ID producto: ");
         String pid = scanner.nextLine().trim();
 
+        if (pid.isEmpty()) {
+            System.out.println("ID invalido. No puede estar vacio.");
+            return;
+        }
+
         System.out.print("Nombre producto: ");
         String nombre = scanner.nextLine().trim();
+
+        if (nombre.isEmpty()) {
+            System.out.println("Nombre invalido. No puede estar vacio.");
+            return;
+        }
 
         double peso;
         System.out.print("Peso: ");
         while (!scanner.hasNextDouble()) {
             scanner.nextLine();
-            System.out.print("Peso invalido. Peso: ");
+            System.out.print("Peso invalido. Debe ingresar un numero. Peso: ");
         }
         peso = scanner.nextDouble();
         scanner.nextLine();
+
+        if (peso <= 0) {
+            System.out.println("Peso invalido. Debe ser mayor a 0.");
+            return;
+        }
 
         contenedor.agregarProducto(new Producto(pid, nombre, peso));
         System.out.println("Producto agregado.");

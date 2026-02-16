@@ -19,14 +19,14 @@ public class ReporteGeneral implements SubMenu {
     @Override
     public void menuRecepcion(Scanner sc) {
         System.out.println("[ESTADO DE RECEPCIÓN]:\n");
-        if(menuPrincipal.getModuloARecepcion() != null) {
-            if(!menuPrincipal.getModuloARecepcion().isEmpty()){
-                System.out.println(">> Camiones en espera: "+ menuPrincipal.getModuloARecepcion().getCamionesEnEspera() +"\n");
-                System.out.println(">> Proximo en turno: Placa [" + menuPrincipal.getModuloARecepcion().verProximoCamion().getPlaca() + "]");
-            }else{
+        if (menuPrincipal.getModuloARecepcion() != null) {
+            if (!menuPrincipal.getModuloARecepcion().isEmpty()) {
+                System.out.println(">> Camiones en espera: " + menuPrincipal.getModuloARecepcion().getCamionesEnEspera() + "\n");
+                    System.out.println(">> Proximo en turno: Placa [" + menuPrincipal.getModuloARecepcion().verProximoCamion().getPlaca() + "]");
+            } else {
                 System.out.println(">> No hay camiones en espera");
             }
-        }else{
+        } else {
             System.out.println(">> Módulo no inicializado");
         }
 
@@ -39,11 +39,11 @@ public class ReporteGeneral implements SubMenu {
         }
 
         System.out.println("\n[ESTADO DE LOGÍSTICA]:");
-        if(menuPrincipal.getRutas() != null) {
+        if (menuPrincipal.getRutas() != null) {
             int activas = menuPrincipal.getRutas().getRutasActivas();
-            System.out.println(">> Rutas activas:"+ activas +"\n");
-            if(activas > 0) menuPrincipal.getRutas().imprimirRutasActivas();
-        }else{
+            System.out.println(">> Rutas activas:" + activas + "\n");
+            if (activas > 0) menuPrincipal.getRutas().imprimirRutasActivas();
+        } else {
             System.out.println("\n>> Módulo no inicializado");
         }
 

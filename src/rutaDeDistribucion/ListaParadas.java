@@ -17,6 +17,10 @@ public class ListaParadas extends ListaDoble {
 
     //Agrega parada al final de la lista
     public void agregarParadaAlFinal(String nombreParada) {
+        if (nombreParada == null || nombreParada.trim().isEmpty()) {
+            System.out.println("El nombre de la parada no puede estar vacio");
+            return;
+        }
         Parada parada = new Parada(nombreParada);
         insertaFinal(parada);
         contador++;
@@ -28,16 +32,28 @@ public class ListaParadas extends ListaDoble {
     //En dado caso que no se cumpla, no se inserta la nueva parada
 
     public void agregarParadaEntreDestinos(String nombreParada, String anterior, String siguiente) {
+        if (nombreParada == null || nombreParada.trim().isEmpty()) {
+            System.out.println("El nombre de la parada no puede estar vacio");
+            return;
+        }
+        if (anterior == null || anterior.trim().isEmpty()) {
+            System.out.println("El nombre de la parada anterior no puede estar vacio");
+            return;
+        }
+        if (siguiente == null || siguiente.trim().isEmpty()) {
+            System.out.println("El nombre de la parada siguiente no puede estar vacio");
+            return;
+        }
         if (vacio()) {
             System.out.println("La lista de rutas esta vacia");
         } else {
             boolean insertado = false;
             NodoDoble actual = inicio;
             while (actual != null && actual.getSiguiente() != null) {
-                Object datoActual = actual.getDato();
-                Object datoSiguiente = actual.getSiguiente().getDato();
+                Parada datoActual = (Parada) actual.getDato();
+                Parada datoSiguiente = (Parada) actual.getSiguiente().getDato();
 
-                if (anterior.equals(datoActual) && siguiente.equals(datoSiguiente)) {
+                if (anterior.equals(datoActual.getNombreParada()) && siguiente.equals(datoSiguiente.getNombreParada())) {
                     NodoDoble next = actual.getSiguiente();
                     NodoDoble nuevo = new NodoDoble(new Parada(nombreParada), next, actual);
 
@@ -62,6 +78,10 @@ public class ListaParadas extends ListaDoble {
     //Elimina una parada de la lista por su nombre
     //Busca el nodo cuyo dato sea igual al nombre de la parada a eliminar y lo elimina
     public void eliminarParada(String nombreParada) {
+        if (nombreParada == null || nombreParada.trim().isEmpty()) {
+            System.out.println("El nombre de la parada no puede estar vacio");
+            return;
+        }
         if (vacio()) {
             System.out.println("La lista de rutas esta vacia");
         } else {
@@ -116,8 +136,17 @@ public class ListaParadas extends ListaDoble {
             NodoDoble aux = inicio;
             do {
                 System.out.println("\nParadas programadas: " + contador);
-                System.out.println("Siguiente parada: " + inicio.getDato());
+                System.out.println("Siguiente parada: " + aux.getDato());
                 System.out.println("Anterior (1) o siguiente (2), regresar menu anterior (0):");
+
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Opcion invalida. Ingrese un numero");
+                    scanner.nextLine();
+                    System.out.println("\nParadas programadas: " + contador);
+                    System.out.println("Siguiente parada: " + aux.getDato());
+                    System.out.println("Anterior (1) o siguiente (2), regresar menu anterior (0):");
+                }
+
                 opcion = scanner.nextInt();
                 scanner.nextLine();
 
@@ -133,9 +162,10 @@ public class ListaParadas extends ListaDoble {
                     } else {
                         System.out.println("\nEstas en el final de la lista");
                     }
-                }
-                if (opcion == 0) {
+                } else if (opcion == 0) {
                     System.out.println("Regresando...\n");
+                } else {
+                    System.out.println("Opcion invalida. Ingrese 0, 1 o 2");
                 }
 
 
@@ -155,7 +185,7 @@ public class ListaParadas extends ListaDoble {
     @Override
     public void imprimir() {
         Nodo actual = inicio;
-        while(actual != null){
+        while (actual != null) {
             System.out.print(actual.getDato());
             actual = actual.getSiguiente();
         }

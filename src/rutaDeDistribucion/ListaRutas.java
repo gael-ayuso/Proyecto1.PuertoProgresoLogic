@@ -20,13 +20,31 @@ public class ListaRutas implements SubMenu {
         do {
             System.out.println(
                     "[1] Crear nueva ruta\n" +
-                    "[2] Ver rutas programadas\n"+
-                    "[3] Modificar ruta\n"+
-                    "[4] Eliminar ruta\n"+
-                    "[0] Volver al Menu Principal");
+                            "[2] Ver rutas programadas\n" +
+                            "[3] Modificar ruta\n" +
+                            "[4] Eliminar ruta\n" +
+                            "[0] Volver al Menu Principal");
+
+            while (!sc.hasNextInt()) {
+                System.out.println("Error: Debe ingresar un numero valido.");
+                sc.nextLine();
+                System.out.println(
+                        "[1] Crear nueva ruta\n" +
+                                "[2] Ver rutas programadas\n" +
+                                "[3] Modificar ruta\n" +
+                                "[4] Eliminar ruta\n" +
+                                "[0] Volver al Menu Principal");
+            }
+
             opcion = sc.nextInt();
             sc.nextLine();
-            switch (opcion){
+
+            if (opcion < 0 || opcion > 4) {
+                System.out.println("Error: Opcion no valida. Ingrese un numero entre 0 y 4.");
+                continue;
+            }
+
+            switch (opcion) {
                 case 1 -> crearNuevaRuta(sc);
                 case 2 -> imprimirRutasProgramadas();
                 case 3 -> modificarRuta(sc);
@@ -34,7 +52,7 @@ public class ListaRutas implements SubMenu {
                 case 0 -> System.out.println("Regresando al menu principal...");
             }
 
-        }while(opcion != 0);
+        } while (opcion != 0);
 
     }
 
@@ -62,7 +80,7 @@ public class ListaRutas implements SubMenu {
             Rutas r = (Rutas) actual.getDato();
             System.out.println(
                     ">> Ruta #" + r.getNumeroDeRuta() +
-                    "\n>>Paradas: " + r.getParadasProgramadas());
+                            "\n>>Paradas: " + r.getParadasProgramadas());
             actual = actual.getSiguiente();
             System.out.println();
         }
@@ -77,8 +95,20 @@ public class ListaRutas implements SubMenu {
         imprimirRutasProgramadas();
 
         System.out.print("Ingrese el numero de la ruta a modificar: ");
+
+        while (!sc.hasNextInt()) {
+            System.out.println("Error: Debe ingresar un numero valido.");
+            sc.nextLine();
+            System.out.print("Ingrese el numero de la ruta a modificar: ");
+        }
+
         int numeroRuta = sc.nextInt();
         sc.nextLine();
+
+        if (numeroRuta < 0) {
+            System.out.println("Error: El numero de ruta no puede ser negativo.");
+            return;
+        }
 
         Rutas ruta = buscarRuta(numeroRuta);
         if (ruta == null) {
@@ -98,8 +128,20 @@ public class ListaRutas implements SubMenu {
         imprimirRutasProgramadas();
 
         System.out.print("Ingrese el numero de la ruta a eliminar: ");
+
+        while (!sc.hasNextInt()) {
+            System.out.println("Error: Debe ingresar un numero valido.");
+            sc.nextLine();
+            System.out.print("Ingrese el numero de la ruta a eliminar: ");
+        }
+
         int numeroRuta = sc.nextInt();
         sc.nextLine();
+
+        if (numeroRuta < 0) {
+            System.out.println("Error: El numero de ruta no puede ser negativo.");
+            return;
+        }
 
         boolean eliminada = eliminarRutaPorNumero(numeroRuta);
         if (eliminada) {
@@ -171,14 +213,15 @@ public class ListaRutas implements SubMenu {
 
     //Imprime todas las rutas activas, esto sirve para el Reporte general
     public void imprimirRutasActivas() {
-        if(listaRutas.vacio()) {
+        if (listaRutas.vacio()) {
             System.out.println("(No hay rutas activas)");
             return;
         }
 
         Nodo actual = listaRutas.getInicio();
-        while(actual != null){
+        while (actual != null) {
             Rutas ruta = (Rutas) actual.getDato();
+            System.out.println("------------------------------------");
             System.out.println("Numero de ruta: " + ruta.getNumeroDeRuta() + " | Paradas programadas: " + ruta.getParadasProgramadas());
             System.out.println("------------------------------------");
             Parada siguiente = ruta.getPrimeraParada();

@@ -19,43 +19,64 @@ public class MenuPrincipal {
     public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
-        do{
+        do {
             System.out.println(
                     "PUERTO PROGRESO LOGIC SYSTEM v1.0 - GESTIÓN PORTUARIA\n" +
-                    "======================================================\n" +
-                    "[1] ZONA DE RECEPCIÓN (Colas - Camiones)\n" +
-                    "[2] PATIO DE CONTENEDORES (Pilas - Almacenamiento)\n" +
-                    "[3] LOGÍSTICA Y RUTAS (Listas Dobles - Distribución)\n" +
-                    "[4] REPORTE GENERAL\n" +
-                    "[5] SALIR\n" +
-                    "Seleccione una opción:"
+                            "======================================================\n" +
+                            "[1] ZONA DE RECEPCIÓN (Colas - Camiones)\n" +
+                            "[2] PATIO DE CONTENEDORES (Pilas - Almacenamiento)\n" +
+                            "[3] LOGÍSTICA Y RUTAS (Listas Dobles - Distribución)\n" +
+                            "[4] REPORTE GENERAL\n" +
+                            "[5] SALIR\n" +
+                            "Seleccione una opción:"
             );
+
+            while (!scanner.hasNextInt()) {
+                scanner.nextLine();
+                System.out.println("Entrada invalida. Debe ingresar un numero.");
+                System.out.println(
+                        "PUERTO PROGRESO LOGIC SYSTEM v1.0 - GESTIÓN PORTUARIA\n" +
+                                "======================================================\n" +
+                                "[1] ZONA DE RECEPCIÓN (Colas - Camiones)\n" +
+                                "[2] PATIO DE CONTENEDORES (Pilas - Almacenamiento)\n" +
+                                "[3] LOGÍSTICA Y RUTAS (Listas Dobles - Distribución)\n" +
+                                "[4] REPORTE GENERAL\n" +
+                                "[5] SALIR\n" +
+                                "Seleccione una opción:"
+                );
+            }
+
             opcion = scanner.nextInt();
             scanner.nextLine();
-            switch (opcion){
+
+            if (opcion < 1 || opcion > 5) {
+                System.out.println("Opcion invalida. Debe seleccionar un numero entre 1 y 5.");
+                continue;
+            }
+
+            switch (opcion) {
                 case 1 -> {
-                    if(moduloARecepcion == null) {
+                    if (moduloARecepcion == null) {
                         moduloARecepcion = new ModuloARecepcion();
                     }
                     moduloARecepcion.menuRecepcion(scanner);
                 }
                 case 2 -> {
-                    if(patioDContenedores == null) {
+                    if (patioDContenedores == null) {
                         patioDContenedores = new PatioDContenedores();
                     }
                     patioDContenedores.menuRecepcion(scanner);
                 }
                 case 3 -> {
-                    if(rutas == null) {
+                    if (rutas == null) {
                         rutas = new ListaRutas();
                     }
                     rutas.menuRecepcion(scanner);
                 }
                 case 4 -> new ReporteGeneral(this).menuRecepcion(scanner);
                 case 5 -> System.out.println("Saliendo del sistema...");
-                default -> System.out.println("Opcion invalida");
             }
-        }while (opcion != 5);
+        } while (opcion != 5);
     }
 
     //Devuelve el modulo de recepcion para poder acceder a sus metodos

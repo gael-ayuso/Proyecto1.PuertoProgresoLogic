@@ -74,7 +74,6 @@ public class Rutas implements SubMenu {
     //Devuelve la primera parada de la ruta
     public Parada getPrimeraParada(){
         if(listaParadas.vacio()) return null;
-
         if(listaParadas.getInicio() == null) return null;
         if(listaParadas.getInicio().getDato() == null) return null;
         return (Parada) listaParadas.getInicio().getDato();
