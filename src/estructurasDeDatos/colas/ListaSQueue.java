@@ -40,7 +40,7 @@ public class ListaSQueue implements Queue {
             System.out.println("La cola esta vacia");
             return null;
         }
-        return lista.getInicio();
+        return lista.getInicio().getDato();
     }
 
     @Override
